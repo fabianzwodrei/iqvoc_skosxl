@@ -12,5 +12,6 @@ config/initializers/secret_token.rb
 log
 
 public/*/iqvoc
+public/uploads/*
 
 tmp
