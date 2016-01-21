@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/fabianzwodrei/iqvoc.git
-  revision: ea5313110e06aedf1d7a3c20f97f58786079129c
+  revision: c178d54b9a32cb89e7374468e3b1b0b4c1d79462
   branch: master
   specs:
     iqvoc (4.9.0)
@@ -199,9 +199,9 @@ GEM
     multipart-post (2.0.0)
     mysql2 (0.4.2)
     net-http-persistent (2.9.4)
-    nokogiri (1.6.7.1)
+    nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
-    nokogiri (1.6.7.1-java)
+    nokogiri (1.6.7.2-java)
     passenger (5.0.23)
       rack
       rake (>= 0.8.1)
