@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/fabianzwodrei/iqvoc.git
-  revision: 967886b7f085bc0dc29bdd27e1b91026df6dbc3d
+  revision: d2795f6a51a092426d494bd5bed92c4fed21e5bf
   branch: master
   specs:
     iqvoc (4.9.0)
