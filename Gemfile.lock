@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/fabianzwodrei/iqvoc.git
-  revision: 5411c8d11f34cb1b1ce2e280b1e4d953ad183170
+  revision: ae8b549416871d15eb02864dd01950b95f7f2335
   branch: master
   specs:
     iqvoc (4.9.0)
@@ -150,8 +150,8 @@ GEM
       builder
       bundler
     iq_triplestorage (0.2.2)
-    jdbc-mysql (5.1.37)
-    jdbc-postgres (9.4.1204)
+    jdbc-mysql (5.1.38)
+    jdbc-postgres (9.4.1206)
     jdbc-sqlite3 (3.8.11.2)
     json (1.8.3)
     json (1.8.3-java)
