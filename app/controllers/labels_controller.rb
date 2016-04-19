@@ -115,6 +115,20 @@ class LabelsController < ApplicationController
     end
   end
 
+  def unpublish
+    @label = Iqvoc::XLLabel.base_class.by_origin(params[:origin]).last!
+ 
+    @label.published_at = nil
+    if @label.save
+      flash[:success] = I18n.t('txt.controllers.versioned_label.update_success')
+      redirect_to label_path(published: 0, id: @label)
+    else
+      flash.now[:error] = I18n.t('txt.controllers.versioned_label.update_error') + " " + @label.errors.full_messages.join(', ')
+      flash.keep
+      redirect_to label_path(published: 1, id: @label)
+    end
+  end
+
   def destroy
     @new_label = Iqvoc::XLLabel.base_class.by_origin(params[:id]).unpublished.last!
     authorize! :destroy, @new_label

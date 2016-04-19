@@ -12,6 +12,13 @@ module Label
         validates :value, uniqueness: { scope: [:language, :rev] },
           if: :validatable_for_publishing?
         validates :value, presence: true, if: :validatable_for_publishing?
+        validate :published_if_labelings_exist
+      end
+
+      def published_if_labelings_exist
+        if labelings.count > 0 && published_at == nil
+          errors.add :base, "Label can't be unpublished if it is used for concepts."
+        end
       end
 
       def origin_has_to_be_escaped
