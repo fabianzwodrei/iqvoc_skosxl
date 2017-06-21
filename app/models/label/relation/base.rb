@@ -47,7 +47,7 @@ class Label::Relation::Base < ActiveRecord::Base
     'partials/label/relation/edit_base'
   end
 
-  def self.only_one_allowed?
+  def self.bidirectional?
     false
   end
 end

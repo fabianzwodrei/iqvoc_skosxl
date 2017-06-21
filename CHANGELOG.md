@@ -1,3 +1,20 @@
+## [2.9.1]
+
+  * Fixed: Export SKOS : NoMethodError : add_skos_xl_labels (#10)
+
+## [2.8.2]
+
+  * Fixed: initial created change note creation
+
+## [2.8.1]
+
+  * Fixed: multiple origin delimitation in label relation edit form
+
+## [2.8.0]
+
+  * Fixed: several bugs (i18n, sorting)
+  * Fixed: several UI glitches
+
 ## [2.7.0]
 
   * Added: add XL-Label search

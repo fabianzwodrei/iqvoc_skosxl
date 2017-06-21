@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'iqvoc', '~> 4.9.0', :github => 'fabianzwodrei/iqvoc', branch: 'master'
+gem 'iqvoc', '~> 4.11.0', :github => 'fabianzwodrei/iqvoc', branch: 'master'
 
 platforms :ruby do
   gem 'mysql2'
@@ -23,5 +23,3 @@ group :test do
   gem 'capybara'
   gem 'poltergeist', '~> 1.5.0'
 end
-
-gem "passenger"

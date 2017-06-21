@@ -17,12 +17,14 @@
     <%= f.text_field :expired_at, :class => 'datepicker' %>
   </fieldset>
 
+  <% if Iqvoc::XLLabel.relation_classes.any? %>
   <fieldset>
     <legend><%= Label::Relation::SKOSXL::Base.model_name.human(:count => 2) %></legend>
       <% Iqvoc::XLLabel.relation_classes.each do |relation_class| %>
         <%= render relation_class.edit_partial_name(label), :f => f, :label => label, :klass => relation_class %>
       <% end %>
   </fieldset>
+  <% end %>
 
   <% Iqvoc::XLLabel.additional_association_classes.keys.each do |association_class| %>
     <fieldset>
@@ -32,8 +34,8 @@
   <% end %>
 
 
-  <% unless label.new_record? %>
-    <% Iqvoc::XLLabel.note_classes.each do |note_class| %>
+  <% Iqvoc::XLLabel.note_classes.each do |note_class| %>
+    <% unless note_class.edit_partial_name(label).nil? %>
       <%= render note_class.edit_partial_name(label), :owner_klass => label, :assoc_klass => note_class, :f => f %>
     <% end %>
   <% end %>
@@ -42,5 +44,6 @@
 
   <div class="well">
     <%= f.submit t("txt.common.save"), :class => 'btn btn-primary' %>
+    <%= link_to t("txt.common.cancel"), label_path(:id => label, :published => 0), :class => "btn btn-default" %>
   </div>
 <% end %>

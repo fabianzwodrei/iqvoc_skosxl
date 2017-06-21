@@ -4,7 +4,7 @@ class LabelsController < ApplicationController
   def index
     authorize! :read, Iqvoc::XLLabel.base_class
 
-    scope = Iqvoc::XLLabel.base_class.by_query_value("#{params[:query]}%")
+    scope = Iqvoc::XLLabel.base_class.by_query_value("%#{params[:query]}%")
     if params[:language] # NB: this is not the same as :lang, which is supplied via route
       scope = scope.by_language(params[:language])
     end
@@ -53,6 +53,20 @@ class LabelsController < ApplicationController
   def new
     authorize! :create, Iqvoc::XLLabel.base_class
     @label = Iqvoc::XLLabel.base_class.new
+
+    # initial created-ChangeNote creation
+    @label.send(Iqvoc::change_note_class_name.to_relation_name).new do |change_note|
+      change_note.value = I18n.t('txt.views.versioning.initial_version')
+      change_note.language = I18n.locale.to_s
+      change_note.annotations_attributes = [
+        { namespace: 'dct', predicate: 'creator', value: current_user.name },
+        { namespace: 'dct', predicate: 'created', value: DateTime.now.to_s }
+      ]
+    end
+
+    Iqvoc::XLLabel.note_class_names.each do |note_class_name|
+      @label.send(note_class_name.to_relation_name).build if @label.send(note_class_name.to_relation_name).empty?
+    end
   end
 
   def create
