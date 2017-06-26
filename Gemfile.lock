@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/fabianzwodrei/iqvoc.git
-  revision: 894c08d4feb510eb631a716a0e0a1701b78ca0e0
+  revision: 8adf866b6557dd5ed6b1a70b27368b6df1add816
+  ref: 8adf866
   branch: master
   specs:
     iqvoc (4.11.1)
@@ -130,7 +131,7 @@ GEM
       tilt
     htmlentities (4.3.4)
     i18n (0.8.4)
-    iq_rdf (0.1.15)
+    iq_rdf (0.1.16)
       activesupport
       builder
       bundler
