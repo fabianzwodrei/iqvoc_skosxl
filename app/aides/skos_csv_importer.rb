@@ -32,7 +32,7 @@ class SkosCsvImporter
 					@current_concept.broader_relations.create_with_reverse_relation(parent)
 					@current_concept.published_at = Time.now
 
-					if matching_column_index
+					if matching_column_index and !row[matching_column_index].blank?
 						@current_concept.match_skos_exact_matches.create(value: row[matching_column_index])
 					end
 
