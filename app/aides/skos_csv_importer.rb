@@ -2,7 +2,7 @@ require "csv"
 class SkosCsvImporter
 	
 
-	def initialize(abs_path, root_concept_origin, depth, matching_column_index = nil)
+	def initialize(abs_path, root_concept_origin, depth, matching_column_index = nil, alt_label_index = nil)
 		@root_concept = Iqvoc::Concept.base_class.find_by_origin root_concept_origin
 
 		@current_parent_concepts = Array.new(depth-1) 
@@ -34,6 +34,11 @@ class SkosCsvImporter
 
 					if matching_column_index and !row[matching_column_index].blank?
 						@current_concept.match_skos_exact_matches.create(value: row[matching_column_index])
+					end
+
+					if alt_label_index and !row[alt_label_index].blank?
+						alt_label = Label::SKOSXL::Base.create(value: row[alt_label_index], language: "de", published_at: Time.now) unless alt_label = find_existing_label(row[alt_label_index])
+						@current_concept.alt_labelings.create(target: alt_label)
 					end
 
 					@current_concept.save
