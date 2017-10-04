@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'iqvoc', '~> 4.11.0', :github => 'fabianzwodrei/iqvoc', branch: 'master', ref: 'b792de2'
+gem 'iqvoc', '~> 4.11.0', :github => 'fabianzwodrei/iqvoc', branch: 'master', ref: 'b30e2df'
 
 platforms :ruby do
   gem 'mysql2'
