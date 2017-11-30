@@ -7,20 +7,11 @@ module Label
         validates :origin, presence: true
         validates :origin, uniqueness: { scope: :rev }
         validate :origin_has_to_be_escaped
-
-        # publishing validations
-        validates :value, presence: true, if: :validatable_for_publishing?
-        
+      
         validate :published_if_labelings_exist
 
         validate :pref_label_language, if: :validatable_for_publishing?
         validate :referenced_published_concepts_have_main_language_pref_label, if: :validatable_for_publishing?
-      end
-
-      def published_if_labelings_exist
-        if labelings.count > 0 && published_at == nil
-          errors.add :base, "Label can't be unpublished if it is used for concepts."
-        end
       end
 
       def origin_has_to_be_escaped

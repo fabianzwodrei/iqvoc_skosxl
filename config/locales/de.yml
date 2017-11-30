@@ -1,7 +1,5 @@
 de:
   txt:
-    common:
-      revoke_publication: Veröffentlichung aufheben
     views:
       layouts:
         sections:

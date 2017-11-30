@@ -14,8 +14,5 @@ Rails.application.routes.draw do
         :as => 'label_versions_to_review'
     get 'labels/versions/:origin/consistency_check' => 'labels/versions#consistency_check',
         :as => 'label_versions_consistency_check'
-    post 'labels/:origin/unpublish' => 'labels#unpublish',
-        :as => 'label_unpublish'
-
   end
 end
