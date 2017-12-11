@@ -7,8 +7,6 @@ module Label
         validates :origin, presence: true
         validates :origin, uniqueness: { scope: :rev }
         validate :origin_has_to_be_escaped
-      
-        validate :published_if_labelings_exist
 
         validate :pref_label_language, if: :validatable_for_publishing?
         validate :referenced_published_concepts_have_main_language_pref_label, if: :validatable_for_publishing?
