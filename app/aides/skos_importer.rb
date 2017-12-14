@@ -175,6 +175,11 @@ class SkosImporter
   end
 
   def import_first_level_objects(types, subject, predicate, object)
+    print(types)
+      print("\r\n" )
+
+    print(subject + " § " + predicate + " § " + object)
+      print("\r\n" )
     if (predicate == 'rdf:type' && types[object] && subject =~ /^:(.+)$/)
       # We've found a subject definition with a class we know and which is in our responsibility (":")
       origin = $1
@@ -282,7 +287,7 @@ class SkosImporter
     # FIXME: bang
     # FIXME: return something?
     if klass = @seen_first_level_objects[origin]
-      klass.find_by!(origin: origin)
+      klass.find_by(origin: origin)
     end
   end
 

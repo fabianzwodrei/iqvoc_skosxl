@@ -54,3 +54,12 @@ ActiveSupport.on_load :skos_importer do
     Iqvoc::XLLabel.relation_classes +
     Iqvoc::XLLabel.additional_association_classes.keys
 end
+
+ActiveSupport.on_load :vocbench_importer do
+  VocbenchImporter.prepend_first_level_object_classes(Iqvoc::XLLabel.base_class)
+  VocbenchImporter.second_level_object_classes +=
+    [Label::SKOSXL::Properties::LiteralForm] +
+    Iqvoc::XLLabel.note_classes +
+    Iqvoc::XLLabel.relation_classes +
+    Iqvoc::XLLabel.additional_association_classes.keys
+end

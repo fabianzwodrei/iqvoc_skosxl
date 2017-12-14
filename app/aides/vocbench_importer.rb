@@ -84,7 +84,7 @@ class VocbenchImporter
   private
 
   def import(file)
-    ActiveSupport.run_load_hooks(:skos_importer_before_import, self)
+    ActiveSupport.run_load_hooks(:vocbench_importer_before_import, self)
 
     start = Time.now
 
@@ -144,7 +144,7 @@ class VocbenchImporter
     @logger.info "Imported #{published} published and #{@new_subjects.count - published} draft subjects in #{(done - start).to_i} seconds."
     @logger.info "First step took #{(first_import_step_done - start).to_i} seconds, publishing took #{(done - first_import_step_done).to_i} seconds."
 
-    ActiveSupport.run_load_hooks(:skos_importer_after_import, self)
+    ActiveSupport.run_load_hooks(:vocbench_importer_after_import, self)
   end
 
   def publish
@@ -232,23 +232,22 @@ class VocbenchImporter
 
       # search for label with same value, if it exsists already ...use it instead, trash new label
       if object
-      	if predicate == "skosxl:prefLabel"
-
+        if predicate == "skosxl:prefLabel"
 #VOCBENCH-SPECIFIC: switch predicate type for if 
           if @prefix_for_altlabels
             predicate = "skosxl:altLabel" if object.value.include?(@prefix_for_altlabels)
           end
 
-					if older_object = Label::SKOSXL::Base.where(value: object.value, language: object.language).where.not(origin: object.origin).first
-						# remove object and references
-						@new_subjects.delete(object.origin)
-						object.destroy()
-						# replacing
-						object = older_object 
-						object_origin = object.origin
-					end
-				end
-			end
+          if older_object = Label::SKOSXL::Base.where(value: object.value, language: object.language).where.not(origin: object.origin).first
+            # remove object and references
+            @new_subjects.delete(object.origin)
+            object.destroy()
+            # replacing
+            object = older_object 
+            object_origin = object.origin
+          end
+        end
+      end
 
 
 
@@ -294,7 +293,7 @@ class VocbenchImporter
     # FIXME: bang
     # FIXME: return something?
     if klass = @seen_first_level_objects[origin]
-      klass.find_by!(origin: origin)
+      klass.find_by(origin: origin)
     end
   end
 
@@ -374,5 +373,5 @@ class VocbenchImporter
     end
   end
 
-  ActiveSupport.run_load_hooks(:skos_importer, self)
+  ActiveSupport.run_load_hooks(:vocbench_importer, self)
 end
